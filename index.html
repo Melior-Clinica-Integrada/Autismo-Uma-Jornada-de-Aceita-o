@@ -1,0 +1,202 @@
+<html><head><base href="/" />
+<title>Autismo: Uma Jornada de Aceitação</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .comic-container {
+        max-width: 1000px;
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .comic-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .panel {
+        background: #fff;
+        border: 2px solid #2196F3;
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .speech-bubble {
+        background: #E3F2FD;
+        padding: 15px;
+        border-radius: 15px;
+        margin: 10px;
+        max-width: 80%;
+        position: relative;
+    }
+
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        border-width: 10px 10px 0;
+        border-style: solid;
+        border-color: #E3F2FD transparent;
+        margin-left: -10px;
+    }
+
+    .character {
+        font-size: 72px;
+        margin: 20px;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    button {
+        background-color: #2196F3;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #1976D2;
+    }
+
+    .info-box {
+        background: #E3F2FD;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 20px 0;
+    }
+</style>
+</head>
+<body>
+    <div class="comic-container">
+        <h1>Compreendendo o Autismo: Uma Jornada de Aceitação</h1>
+        <div class="comic-grid" id="comicGrid"></div>
+        <div class="navigation">
+            <button onclick="previousPage()">⬅️ Anterior</button>
+            <button onclick="nextPage()">Próxima ➡️</button>
+        </div>
+        <div class="info-box" id="infoBox"></div>
+    </div>
+
+<script>
+const comicPages = [
+    {
+        panels: [
+            {
+                character: "👦",
+                text: "Oi! Eu sou o João. Sou autista e quero compartilhar com você como eu vejo o mundo!"
+            },
+            {
+                character: "🌈",
+                text: "Cada pessoa autista é única, como as cores do arco-íris. Temos nossas próprias formas de perceber e interagir com o mundo."
+            }
+        ],
+        info: "O autismo é uma condição neurológica que afeta a forma como uma pessoa percebe e interage com o mundo. Não é uma doença, mas uma forma diferente de ser."
+    },
+    {
+        panels: [
+            {
+                character: "🎧",
+                text: "Às vezes, sons muito altos ou luzes muito fortes podem me incomodar mais do que outras pessoas."
+            },
+            {
+                character: "💭",
+                text: "Posso ter interesses muito específicos e adoro aprender tudo sobre eles!"
+            }
+        ],
+        info: "Pessoas autistas podem ter sensibilidade sensorial aumentada e interesses intensos em assuntos específicos."
+    },
+    {
+        panels: [
+            {
+                character: "👥",
+                text: "Comunicação social pode ser desafiadora, mas isso não significa que não quero fazer amigos!"
+            },
+            {
+                character: "❤️",
+                text: "Com compreensão e respeito, podemos criar um mundo mais inclusivo para todos!"
+            }
+        ],
+        info: "A aceitação e compreensão são fundamentais para criar uma sociedade mais inclusiva para pessoas autistas."
+    },
+    {
+        panels: [
+            {
+                character: "💫",
+                text: "As vezes, o autista fica confuso com algumas piadas e metáforas. Isso porque ele leva tudo ao pé da letra."
+            },
+            {
+                character: "💢",
+                text: "As vezes, por apresentar rigidez cognitiva, pode ser comparado a uma pessoa teimosa e obstinada."
+            }
+        ],
+        info: "A rigidez cognitiva do autista, que o leva a interpretar piadas e metáforas de forma literal, pode ser comparada à teimosia de uma pessoa obstinada, criando confusões nas interações sociais."
+    }
+];
+
+let currentPage = 0;
+
+function renderComic() {
+    const grid = document.getElementById('comicGrid');
+    const infoBox = document.getElementById('infoBox');
+    grid.innerHTML = '';
+    
+    comicPages[currentPage].panels.forEach(panel => {
+        const div = document.createElement('div');
+        div.className = 'panel';
+        div.innerHTML = `
+            <div class="character">${panel.character}</div>
+            <div class="speech-bubble">${panel.text}</div>
+        `;
+        grid.appendChild(div);
+    });
+    
+    infoBox.textContent = comicPages[currentPage].info;
+}
+
+function nextPage() {
+    if (currentPage < comicPages.length - 1) {
+        currentPage++;
+        renderComic();
+    }
+}
+
+function previousPage() {
+    if (currentPage > 0) {
+        currentPage--;
+        renderComic();
+    }
+}
+
+// Initialize comic
+renderComic();
+</script>
+</body>
+</html>
